@@ -1,0 +1,12 @@
+name: ExampleTransferPlugin
+version: '${project.version}'
+main: dev.codedred.exampletransferplugin.ExampleTransferPlugin
+api-version: 1.18
+authors: [ WorldQL ]
+description: Example usage for the server transfer mod
+website: worldql.com
+depend: [ServerTransferPlugin]
+
+
+commands:
+  connect:

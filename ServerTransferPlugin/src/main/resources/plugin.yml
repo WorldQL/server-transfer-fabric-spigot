@@ -1,0 +1,5 @@
+name: ServerTransferPlugin
+version: '${project.version}'
+main: com.nftworlds.servertransferplugin.ServerTransferPlugin
+api-version: 1.18
+website: worldql.com
