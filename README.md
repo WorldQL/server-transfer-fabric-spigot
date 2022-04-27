@@ -35,7 +35,11 @@ Currently, this product includes a Fabric Mod and a Spigot Plugin. The client/la
 <!-- Releases -->
 ## Releases
 
-TBA
+Check out the latest release here [here](https://github.com/WorldQL/server-transfer-fabric-spigot/releases/tag/1.18.2 "1.18.2 Release")
+
+All releases:
+[1.18.2](https://github.com/WorldQL/server-transfer-fabric-spigot/releases/tag/1.18.2 "1.18.2 Release")
+[1.18.1](https://github.com/WorldQL/server-transfer-fabric-spigot/releases/tag/1.18.1 "1.18.1 Release")
 
 
 <!-- Coming Soon -->
