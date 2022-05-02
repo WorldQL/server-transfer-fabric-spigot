@@ -5,8 +5,7 @@ api-version: 1.18
 authors: [ WorldQL ]
 description: Example usage for the server transfer mod
 website: worldql.com
-depend: [ServerTransferPlugin]
-
+depend: [server-transfer-plugin]
 
 commands:
-  connect:
+  connect: {}
