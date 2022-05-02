@@ -8,21 +8,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Method;
 
-
 public final class ServerTransferPlugin extends JavaPlugin {
     private static final String WQL_CHANNEL = "servertransfermod:wql_channel";
 
     @Override
     public void onEnable() {
-        if (!getServer().getMessenger().getOutgoingChannels().contains(WQL_CHANNEL))
+        if (!getServer().getMessenger().getOutgoingChannels().contains(WQL_CHANNEL)) {
             getServer().getMessenger().registerOutgoingPluginChannel(this, WQL_CHANNEL);
-
+        }
     }
 
     @Override
-    public void onDisable() {
-    }
-
+    public void onDisable() {}
 
     public static void sendTransferPacket(Player player, String ip_address) {
         Preconditions.checkArgument(player.isOnline(), "Player must be online to send a transfer packet.");
@@ -40,12 +37,11 @@ public final class ServerTransferPlugin extends JavaPlugin {
         }
 
         player.sendPluginMessage(ServerTransferPlugin.getPlugin(ServerTransferPlugin.class), WQL_CHANNEL, out.toByteArray());
-
     }
 
     public static void sendTransferPacket(String ip_address, Player... players) {
-        for(Player player : players)
+        for (Player player : players) {
             sendTransferPacket(player, ip_address);
+        }
     }
-
 }
