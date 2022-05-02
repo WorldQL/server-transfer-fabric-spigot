@@ -1,0 +1,51 @@
+name: Build Mod
+on:
+  push:
+    branches:
+      - trunk
+    tags:
+      - v*
+  pull_request:
+
+env:
+  JDK_VERSION: '17'
+  SPIGOT_VERSION: '1.18.2'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: temurin
+        java-version: ${{ env.JDK_VERSION }}
+        cache: gradle
+    - name: Build with Gradle
+      working-directory: ./ServerTransferMod
+      run: ./gradlew build --no-daemon
+    - name: Resolve .jar name
+      id: prep
+      run: |
+        JAR_PATH=`echo ServerTransferMod/build/libs/ServerTransferMod*[^sources].jar`
+        JAR_NAME=`basename ${JAR_PATH}`
+
+        echo ::set-output name=jar_path::${JAR_PATH}
+        echo ::set-output name=jar_name::${JAR_NAME}
+    - name: Upload .jar
+      if: contains(github.ref, 'refs/tags/') == false
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ steps.prep.outputs.jar_name }}
+        path: ${{ steps.prep.outputs.jar_path }}
+    - name: Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        name: Server Transfer ${{ github.ref }}
+        files: ${{ steps.prep.outputs.jar_path }}
+        generate_release_notes: true
