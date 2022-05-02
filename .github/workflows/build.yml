@@ -23,18 +23,13 @@ jobs:
         distribution: temurin
         java-version: ${{ env.JDK_VERSION }}
         cache: maven
-    # - name: Compile Spigot with BuildTools
-    #   uses: SpraxDev/Action-SpigotMC@v3
-    #   with:
-    #     versions: ${{ env.SPIGOT_VERSION }}
-    #     buildToolProvider: SpigotMC
     - name: Build with Maven
       working-directory: ./ServerTransferPlugin
       run: mvn -B package --file pom.xml
     - name: Resolve .jar name
       id: prep
       run: |
-        JAR_PATH=`echo ServerTransferPlugin/target/ServerTransferPlugin*.jar`
+        JAR_PATH=`echo ServerTransferPlugin/target/server-transfer-plugin*.jar`
         JAR_NAME=`basename ${JAR_PATH}`
 
         echo ::set-output name=jar_path::${JAR_PATH}
