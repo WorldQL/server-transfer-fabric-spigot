@@ -1,8 +1,9 @@
-package com.nftworlds.servertransferplugin;
+package com.nftworlds.server_transfer.plugin;
 
 import com.google.common.base.Preconditions;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
+import io.papermc.lib.PaperLib;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +14,8 @@ public final class ServerTransferPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        PaperLib.suggestPaper(this);
+
         if (!getServer().getMessenger().getOutgoingChannels().contains(WQL_CHANNEL)) {
             getServer().getMessenger().registerOutgoingPluginChannel(this, WQL_CHANNEL);
         }
