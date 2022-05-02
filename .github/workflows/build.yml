@@ -67,7 +67,7 @@ jobs:
     - name: Resolve .jar name
       id: prep
       run: |
-        JAR_PATH=`echo ServerTransferMod/build/libs/ServerTransferMod*[^sources].jar`
+        JAR_PATH=`echo ServerTransferMod/build/libs/server-transfer-mod*[^sources].jar`
         JAR_NAME=`basename ${JAR_PATH}`
 
         echo ::set-output name=jar_path::${JAR_PATH}
