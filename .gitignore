@@ -1,5 +1,6 @@
-# IntelliJ Directory
+# IDE Settings
 .idea
+.vscode
 
 # Compiled class file
 *.class
