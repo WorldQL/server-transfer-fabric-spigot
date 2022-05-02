@@ -6,8 +6,10 @@ import com.google.common.io.ByteStreams;
 import io.papermc.lib.PaperLib;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 public final class ServerTransferPlugin extends JavaPlugin {
     private static final String WQL_CHANNEL = "servertransfermod:wql_channel";
@@ -22,9 +24,16 @@ public final class ServerTransferPlugin extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() {}
+    public void onDisable() {
+    }
 
-    public static void sendTransferPacket(Player player, String ip_address) {
+    /**
+     * @param ip_address IP Address to connect to
+     * @param player     Player to send connect packets to
+     */
+    public static void sendTransferPacket(@NotNull String ip_address, @NotNull Player player) {
+        Objects.requireNonNull(player);
+        Objects.requireNonNull(ip_address);
         Preconditions.checkArgument(player.isOnline(), "Player must be online to send a transfer packet.");
 
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -42,9 +51,13 @@ public final class ServerTransferPlugin extends JavaPlugin {
         player.sendPluginMessage(ServerTransferPlugin.getPlugin(ServerTransferPlugin.class), WQL_CHANNEL, out.toByteArray());
     }
 
-    public static void sendTransferPacket(String ip_address, Player... players) {
+    /**
+     * @param ip_address IP Address to connect to
+     * @param players    Players to send connect packets to
+     */
+    public static void sendTransferPacket(@NotNull String ip_address, Player @NotNull ... players) {
         for (Player player : players) {
-            sendTransferPacket(player, ip_address);
+            sendTransferPacket(ip_address, player);
         }
     }
 }
