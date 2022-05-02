@@ -32,8 +32,14 @@ jobs:
         JAR_PATH=`echo ServerTransferPlugin/target/server-transfer-plugin*.jar`
         JAR_NAME=`basename ${JAR_PATH}`
 
+        VERSION=`git rev-parse --short HEAD`
+        if [[ $GITHUB_REF == refs/tags/* ]]; then
+          VERSION=${GITHUB_REF#refs/tags/v}
+        fi
+
         echo ::set-output name=jar_path::${JAR_PATH}
         echo ::set-output name=jar_name::${JAR_NAME}
+        echo ::set-output name=version::${VERSION}
     - name: Upload .jar
       if: startsWith(github.ref, 'refs/tags/') == false
       uses: actions/upload-artifact@v3
@@ -46,7 +52,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: Server Transfer ${{ github.ref }}
+        name: Server Transfer ${{ steps.prep.outputs.version }}
         files: ${{ steps.prep.outputs.jar_path }}
         generate_release_notes: true
 
@@ -70,8 +76,14 @@ jobs:
         JAR_PATH=`echo ServerTransferMod/build/libs/server-transfer-mod*[^sources].jar`
         JAR_NAME=`basename ${JAR_PATH}`
 
+        VERSION=`git rev-parse --short HEAD`
+        if [[ $GITHUB_REF == refs/tags/* ]]; then
+          VERSION=${GITHUB_REF#refs/tags/v}
+        fi
+
         echo ::set-output name=jar_path::${JAR_PATH}
         echo ::set-output name=jar_name::${JAR_NAME}
+        echo ::set-output name=version::${VERSION}
     - name: Upload .jar
       if: startsWith(github.ref, 'refs/tags/') == false
       uses: actions/upload-artifact@v3
@@ -84,6 +96,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: Server Transfer ${{ github.ref }}
+        name: Server Transfer ${{ steps.prep.outputs.version }}
         files: ${{ steps.prep.outputs.jar_path }}
         generate_release_notes: true
