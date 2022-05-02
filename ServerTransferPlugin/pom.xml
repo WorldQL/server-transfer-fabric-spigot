@@ -40,7 +40,6 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputFile>C:\Users\chris\OneDrive\Desktop\Spigot\Servers\Spigot 1.18.2\plugins\ServerTransferPlugin.jar</outputFile>
                       </configuration>
                     </execution>
                 </executions>
