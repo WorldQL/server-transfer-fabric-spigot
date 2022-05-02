@@ -1,6 +1,6 @@
-package com.nftworlds.servertransfermod.network;
+package com.nftworlds.server_transfer.mod.network;
 
-import com.nftworlds.servertransfermod.ServerTransferMod;
+import com.nftworlds.server_transfer.mod.ServerTransferMod;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.*;
@@ -18,7 +18,7 @@ import java.net.InetSocketAddress;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static com.nftworlds.servertransfermod.ServerTransferMod.LOGGER;
+import static com.nftworlds.server_transfer.mod.ServerTransferMod.LOGGER;
 
 /***
  * Developed by @WorldQL

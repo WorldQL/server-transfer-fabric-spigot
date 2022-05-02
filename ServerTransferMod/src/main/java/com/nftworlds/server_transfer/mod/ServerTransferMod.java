@@ -1,18 +1,13 @@
-package com.nftworlds.servertransfermod;
+package com.nftworlds.server_transfer.mod;
 
-import com.nftworlds.servertransfermod.network.ServerTransferReader;
+import com.nftworlds.server_transfer.mod.network.ServerTransferReader;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-/***
- * Developed by @WorldQL
- *
- */
 public class ServerTransferMod implements ModInitializer {
-    public static final String ID = "servertransfermod";
+    public static final String ID = "server-transfer-mod";
     public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
     public static Identifier id(String name) {
@@ -24,7 +19,4 @@ public class ServerTransferMod implements ModInitializer {
         ServerTransferReader reader = new ServerTransferReader();
         reader.register();
     }
-
-
-
 }

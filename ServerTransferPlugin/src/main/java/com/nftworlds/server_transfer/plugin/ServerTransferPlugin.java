@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 
 public final class ServerTransferPlugin extends JavaPlugin {
-    private static final String WQL_CHANNEL = "servertransfermod:wql_channel";
+    private static final String WQL_CHANNEL = "server-transfer-mod:wql_channel";
 
     @Override
     public void onEnable() {

@@ -1,24 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "servertransfermod",
+  "id": "server-transfer-mod",
   "version": "${version}",
-  "name": "ServerTransferMod",
+  "name": "Server Transfer Mod",
   "description": "",
   "authors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/ServerTransferMod/icon.png",
+  "icon": "assets/server-transfer-mod/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "com.nftworlds.servertransfermod.client.ServerTransferModClient"
+      "com.nftworlds.server_transfer.mod.client.ServerTransferModClient"
     ],
     "main": [
-      "com.nftworlds.servertransfermod.ServerTransferMod"
+      "com.nftworlds.server_transfer.mod.ServerTransferMod"
     ]
   },
   "mixins": [
-    "ServerTransferMod.mixins.json"
+    "server-transfer-mod.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",
