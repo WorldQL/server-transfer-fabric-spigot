@@ -22,8 +22,10 @@ jobs:
           server-password: MAVEN_SECRET
         
       - name: Build with Maven
+        working-directory: ./ServerTransferPlugin
         run: mvn -B package --file pom.xml
       - name: Publish package
+        working-directory: ./ServerTransferPlugin
         run: mvn -e --batch-mode deploy
         env:
           MAVEN_NAME: ${{ secrets.MAVEN_NAME }}
