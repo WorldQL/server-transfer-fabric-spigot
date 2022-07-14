@@ -3,6 +3,7 @@ package com.nftworlds.server_transfer.mod.network;
 import com.nftworlds.server_transfer.mod.ServerTransferMod;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ConfirmScreen;
 import net.minecraft.client.gui.screen.FatalErrorScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -43,6 +44,10 @@ public class ServerTransferReader {
             // Send message to client
             MinecraftClient mc = MinecraftClient.getInstance();
 
+            mc.setScreen(new ConfirmScreen(this::changeServer, Text.of("Are you sure?"), Text.of("Connect to " + host)));
+            System.out.println("Passed");
+
+
             assert mc.player != null;
             mc.inGameHud.addChatMessage(MessageType.SYSTEM, Text.of("Attempting to connect to: " + host), mc.player.getUuid());
 
@@ -51,6 +56,12 @@ public class ServerTransferReader {
 
             connectToServer(client, address, multiplayerScreen);
         });
+    }
+
+    private void changeServer(boolean confirmed) {
+        if (confirmed)
+            return;
+
     }
 
     private void connectToServer(MinecraftClient client, ServerAddress address, Screen screen) {
