@@ -1,0 +1,11 @@
+name: ExampleTransferPlugin
+version: '${project.version}'
+main: com.nftworlds.simple_transfer.SimpleTransfer
+api-version: 1.17
+authors: [ WorldQL ]
+description: Simple chat server transfer implementation
+website: worldql.com
+depend: [server-transfer-plugin]
+
+commands:
+  connect: {}

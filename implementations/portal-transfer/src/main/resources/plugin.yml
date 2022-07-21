@@ -1,0 +1,17 @@
+name: PortalTransfer
+version: '${project.version}'
+main: com.nftworlds.portal_transfer.PortalTransfer
+api-version: 1.17
+authors: [ WorldQL ]
+description: Use portals to transfer servers
+website: worldql.com
+depend: [server-transfer-plugin]
+
+commands:
+  portalwand: {}
+  portal: {}
+    # pt create <name-of-portal> <host>
+    # pt delete <name-of-portal>
+    # pt locate <name-of-portal>
+    # pt sethost <name-of-portal> <host>
+    # pt list
