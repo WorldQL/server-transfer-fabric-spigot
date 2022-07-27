@@ -51,7 +51,7 @@ public class PortalCommand implements CommandExecutor {
                       name = name + "-2";
 
                   Wand wand = manager.getWand(player.getUniqueId());
-                  manager.addPortal(name, host, new Cuboid(wand.getFirstLocation(), wand.getSecondLocation()));
+                  manager.addPortal(name, host, new Cuboid(wand.getFirstLocation(), wand.getSecondLocation()), true);
                   player.sendMessage("§8§l[§a§l!§8§l] §aPortal created successfully!");
                   break;
               }

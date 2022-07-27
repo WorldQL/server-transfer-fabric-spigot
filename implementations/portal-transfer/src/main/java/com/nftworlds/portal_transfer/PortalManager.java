@@ -45,11 +45,12 @@ public class PortalManager {
         return portals.containsKey(name.toLowerCase());
     }
 
-    public void addPortal(String name, String host, Cuboid cuboid) {
+    public void addPortal(String name, String host, Cuboid cuboid, boolean addWater) {
         Portal portal = new Portal(cuboid, name, host);
         portals.put(name, portal);
         DataManager.getInstance().savePortal(portal);
-        new CreationHandler().createPortal(portal);
+        if (addWater)
+            new CreationHandler().createPortal(portal);
     }
 
     public void deletePortal(String name) {

@@ -1,6 +1,13 @@
 package com.nftworlds.portal_transfer.menus;
 
+import com.nftworlds.portal_transfer.PortalManager;
 import com.nftworlds.portal_transfer.PortalTransfer;
+import com.nftworlds.portal_transfer.models.Portal;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -18,6 +25,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class SettingsMenu implements Listener {
     private final Inventory inv;
@@ -31,7 +39,7 @@ public class SettingsMenu implements Listener {
         inv.setItem(1,createItem(Material.BARRIER, "§c§lDelete §8§lPortal", " ", "§7Click to delete a portal"));
         inv.setItem(3, createItem(Material.DIAMOND_BOOTS, "§a§lLocate §8§lPortal", " ", "§7Click to locate a portal"));
         inv.setItem(5, createItem(Material.GLOW_INK_SAC, "§d§lGlow §8§lPortal", " ", "§7Click to highlight a portal"));
-        inv.setItem(7, createItem(Material.AXOLOTL_SPAWN_EGG, "§9§lChange §8§lHost", " ", "§7Click to change a portals host"));
+        //inv.setItem(7, createItem(Material.AXOLOTL_SPAWN_EGG, "§9§lChange §8§lHost", " ", "§7Click to change a portals host"));
         for (int i = 0 ; i < 9 ; i++) {
             if (inv.getItem(i) == null)
                 inv.setItem(i, createItem(Material.BLACK_STAINED_GLASS_PANE, " ", " "));
@@ -72,8 +80,10 @@ public class SettingsMenu implements Listener {
 
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getRawSlot() == 1)
+        if (event.getRawSlot() == 1) {
+            deleteMessage(player);
             event.getWhoClicked().closeInventory(InventoryCloseEvent.Reason.PLUGIN);
+        }
         else if (event.getRawSlot() == 3 || event.getRawSlot() == 5) {
             Bukkit.dispatchCommand(player,"portal list");
             player.closeInventory(InventoryCloseEvent.Reason.PLUGIN);
@@ -98,5 +108,22 @@ public class SettingsMenu implements Listener {
                    }
                }.runTaskLater(PortalTransfer.getPlugin(PortalTransfer.class), 3);
             }
+    }
+
+    private void deleteMessage(Player player) {
+        PortalManager manager = PortalManager.getInstance();
+        player.sendMessage("\n§8§l[§a§l!§8§l] §a§nPortals:");
+        for (Map.Entry<String, Portal> p : manager.getPortals().entrySet()) {
+            player.spigot().sendMessage(getDeleteComponent(p.getKey()),
+                    new TextComponent(" " + p.getKey() + " §7--> §f" + p.getValue().getHost()));
+        }
+    }
+
+    private TextComponent getDeleteComponent(String portal) {
+        TextComponent msg2 = new TextComponent("§4§l[Delete]");
+        msg2.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/portal delete " + portal));
+        msg2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+                new ComponentBuilder("Click here to delete the portal!").color(ChatColor.GRAY).italic(true).create()));
+        return msg2;
     }
 }

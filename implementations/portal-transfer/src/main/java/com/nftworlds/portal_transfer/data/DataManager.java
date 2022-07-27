@@ -67,7 +67,7 @@ public class DataManager {
                     getData().getInt("data." + key + ".cuboid.maxY"),
                     getData().getInt("data." + key + ".cuboid.maxZ"),
                     Bukkit.getWorld(getData().getString("data." + key + ".cuboid.world")));
-            manager.addPortal(key, getData().getString("data." + key + ".host"), cuboid);
+            manager.addPortal(key, getData().getString("data." + key + ".host"), cuboid, false);
         });
     }
 }

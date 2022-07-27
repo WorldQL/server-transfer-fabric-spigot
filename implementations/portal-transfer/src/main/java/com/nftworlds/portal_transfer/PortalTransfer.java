@@ -3,10 +3,10 @@ package com.nftworlds.portal_transfer;
 import com.nftworlds.portal_transfer.commands.PortalCommand;
 import com.nftworlds.portal_transfer.commands.WandCommand;
 import com.nftworlds.portal_transfer.data.DataManager;
-import com.nftworlds.portal_transfer.data.ServerLoader;
 import com.nftworlds.portal_transfer.handlers.CreationHandler;
 import com.nftworlds.portal_transfer.listeners.ParticlePreview;
 import com.nftworlds.portal_transfer.listeners.PlayerInteract;
+import com.nftworlds.portal_transfer.listeners.PlayerMove;
 import com.nftworlds.portal_transfer.listeners.WandInteract;
 import com.nftworlds.portal_transfer.menus.EditorMenu;
 import com.nftworlds.portal_transfer.menus.MenuManager;
@@ -14,8 +14,6 @@ import com.nftworlds.portal_transfer.menus.ServerSelectorMenu;
 import com.nftworlds.portal_transfer.menus.SettingsMenu;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Map;
 
 public final class PortalTransfer extends JavaPlugin {
 
@@ -51,5 +49,6 @@ public final class PortalTransfer extends JavaPlugin {
         pm.registerEvents(new SettingsMenu(), this);
         pm.registerEvents(new ServerSelectorMenu(), this);
         pm.registerEvents(new CreationHandler(), this);
+        pm.registerEvents(new PlayerMove(), this);
     }
 }
