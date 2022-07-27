@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CreationHandler implements Listener {
 
-    public void createPortal(Portal portal) {
+    public void createPortal(Portal portal, boolean addWater) {
         List<Location> locations = new ArrayList<>();
         Cuboid cuboid = portal.getCuboid();
         for (int x = cuboid.getMinX() ; x <= cuboid.getMaxX() ; x++)
@@ -25,9 +25,10 @@ public class CreationHandler implements Listener {
         PortalManager portalManager = PortalManager.getInstance();
 
         for (Location loc : locations) {
+            portalManager.addPortalBlock(loc.getBlock());
             if (loc.getBlock().getType().isAir()) {
-                loc.getBlock().setType(Material.WATER);
-                portalManager.addPortalBlock(loc.getBlock());
+                if (addWater)
+                    loc.getBlock().setType(Material.WATER);
             }
         }
     }

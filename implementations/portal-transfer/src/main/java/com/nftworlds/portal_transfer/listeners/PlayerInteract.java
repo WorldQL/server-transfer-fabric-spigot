@@ -1,7 +1,6 @@
 package com.nftworlds.portal_transfer.listeners;
 
 import com.nftworlds.portal_transfer.events.WandClickEvent;
-import com.nftworlds.portal_transfer.menus.EditorMenu;
 import com.nftworlds.portal_transfer.menus.MenuManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

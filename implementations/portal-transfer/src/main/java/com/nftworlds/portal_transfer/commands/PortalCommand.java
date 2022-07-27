@@ -28,6 +28,10 @@ public class PortalCommand implements CommandExecutor {
             sender.sendMessage("Only players can use this command!");
             return true;
         }
+        if (!player.hasPermission("ptransfer.admin")) {
+            player.sendMessage(org.bukkit.ChatColor.RED + "You do not have permission to use this command.");
+            return true;
+        }
         PortalManager manager = PortalManager.getInstance();
 
 //    # pt create <name-of-portal> <host>

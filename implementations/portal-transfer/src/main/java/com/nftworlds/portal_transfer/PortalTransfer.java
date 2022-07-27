@@ -12,13 +12,17 @@ import com.nftworlds.portal_transfer.menus.EditorMenu;
 import com.nftworlds.portal_transfer.menus.MenuManager;
 import com.nftworlds.portal_transfer.menus.ServerSelectorMenu;
 import com.nftworlds.portal_transfer.menus.SettingsMenu;
+import io.papermc.lib.PaperLib;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import static com.nftworlds.portal_transfer.ServerTransfer.WQL_CHANNEL;
 
 public final class PortalTransfer extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        PaperLib.suggestPaper(this);
 
         DataManager.getInstance().loadPortals();
         MenuManager.getInstance(); // pre load servers
@@ -27,6 +31,10 @@ public final class PortalTransfer extends JavaPlugin {
         registerListeners();
 
         MenuManager.getInstance().init(); // load server gui
+
+        if (!getServer().getMessenger().getOutgoingChannels().contains(WQL_CHANNEL)) {
+            getServer().getMessenger().registerOutgoingPluginChannel(this, WQL_CHANNEL);
+        }
 
     }
 

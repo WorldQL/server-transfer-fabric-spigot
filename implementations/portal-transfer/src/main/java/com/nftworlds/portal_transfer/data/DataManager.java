@@ -19,16 +19,16 @@ public class DataManager {
         return instance;
     }
 
-    private final CustomConfig config = new CustomConfig(PortalTransfer.getPlugin(PortalTransfer.class), "config.yml");
+   // private final CustomConfig config = new CustomConfig(PortalTransfer.getPlugin(PortalTransfer.class), "config.yml");
     private final CustomConfig data = new CustomConfig(PortalTransfer.getPlugin(PortalTransfer.class), "data.yml");
 
-    public FileConfiguration getConfig() {
-        return config.getConfig();
-    }
+   // public FileConfiguration getConfig() {
+   //     return config.getConfig();
+  //  }
 
-    public CustomConfig config() {
-        return config;
-    }
+   // public CustomConfig config() {
+   //     return config;
+   // }
 
     public FileConfiguration getData() {
         return data.getConfig();

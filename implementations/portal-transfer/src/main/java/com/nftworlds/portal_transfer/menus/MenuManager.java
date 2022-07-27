@@ -3,7 +3,6 @@ package com.nftworlds.portal_transfer.menus;
 import com.nftworlds.portal_transfer.data.ServerLoader;
 import com.nftworlds.portal_transfer.models.Server;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MenuManager {

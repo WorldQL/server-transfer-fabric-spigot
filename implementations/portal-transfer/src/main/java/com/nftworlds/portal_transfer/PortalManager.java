@@ -49,8 +49,7 @@ public class PortalManager {
         Portal portal = new Portal(cuboid, name, host);
         portals.put(name, portal);
         DataManager.getInstance().savePortal(portal);
-        if (addWater)
-            new CreationHandler().createPortal(portal);
+        new CreationHandler().createPortal(portal, addWater);
     }
 
     public void deletePortal(String name) {
@@ -72,25 +71,3 @@ public class PortalManager {
         portalBlocks.add(b);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

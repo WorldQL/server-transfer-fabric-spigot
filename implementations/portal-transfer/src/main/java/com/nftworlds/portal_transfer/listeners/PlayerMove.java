@@ -1,9 +1,9 @@
 package com.nftworlds.portal_transfer.listeners;
 
-
 import com.nftworlds.portal_transfer.PortalManager;
+import com.nftworlds.portal_transfer.ServerTransfer;
 import com.nftworlds.portal_transfer.models.Portal;
-import com.nftworlds.server_transfer.plugin.ServerTransferPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -29,10 +29,13 @@ public class PlayerMove implements Listener {
                 break;
             }
         }
+
         if (portal == null)
             return;
 
-        ServerTransferPlugin.sendTransferPacket(portal.getHost(), event.getPlayer());
+        event.setCancelled(true);
+        Bukkit.dispatchCommand(event.getPlayer(), "spawn");
+        ServerTransfer.sendTransferPacket(portal.getHost(), event.getPlayer());
     }
 
 }
