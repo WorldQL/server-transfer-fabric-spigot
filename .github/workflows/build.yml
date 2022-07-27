@@ -29,7 +29,7 @@ jobs:
     - name: Resolve .jar name
       id: prep
       run: |
-        JAR_PATH=`echo ServerTransferPlugin/target/server-transfer-plugin*.jar`
+        JAR_PATH=`echo server-transfer-plugin/target/server-transfer-plugin*.jar`
         JAR_NAME=`basename ${JAR_PATH}`
 
         VERSION=`git rev-parse --short HEAD`
@@ -73,7 +73,7 @@ jobs:
     - name: Resolve .jar name
       id: prep
       run: |
-        JAR_PATH=`echo ServerTransferMod/build/libs/server-transfer-mod*[^sources].jar`
+        JAR_PATH=`echo server-transfer-mod/build/libs/server-transfer-mod*[^sources].jar`
         JAR_NAME=`basename ${JAR_PATH}`
 
         VERSION=`git rev-parse --short HEAD`
