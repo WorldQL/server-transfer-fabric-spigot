@@ -24,12 +24,12 @@ jobs:
         java-version: ${{ env.JDK_VERSION }}
         cache: maven
     - name: Build with Maven
-      working-directory: ./ServerTransferPlugin
+      working-directory: ./server-transfer-plugin
       run: mvn -B package --file pom.xml
     - name: Resolve .jar name
       id: prep
       run: |
-        JAR_PATH=`echo ServerTransferPlugin/target/server-transfer-plugin*.jar`
+        JAR_PATH=`echo server-transfer-plugin/target/server-transfer-plugin*.jar`
         JAR_NAME=`basename ${JAR_PATH}`
 
         VERSION=`git rev-parse --short HEAD`
@@ -68,12 +68,12 @@ jobs:
         java-version: ${{ env.JDK_VERSION }}
         cache: gradle
     - name: Build with Gradle
-      working-directory: ./ServerTransferMod
+      working-directory: ./server-transfer-mod
       run: ./gradlew build --no-daemon
     - name: Resolve .jar name
       id: prep
       run: |
-        JAR_PATH=`echo ServerTransferMod/build/libs/server-transfer-mod*[^sources].jar`
+        JAR_PATH=`echo server-transfer-mod/build/libs/server-transfer-mod*[^sources].jar`
         JAR_NAME=`basename ${JAR_PATH}`
 
         VERSION=`git rev-parse --short HEAD`
